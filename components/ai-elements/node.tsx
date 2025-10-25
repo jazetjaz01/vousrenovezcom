@@ -1,6 +1,5 @@
 import {
   Card,
-  CardAction,
   CardContent,
   CardDescription,
   CardFooter,
@@ -36,7 +35,7 @@ export type NodeHeaderProps = ComponentProps<typeof CardHeader>;
 
 export const NodeHeader = ({ className, ...props }: NodeHeaderProps) => (
   <CardHeader
-    className={cn("gap-0.5 rounded-t-md border-b bg-secondary p-3!", className)}
+    className={cn("gap-0.5 rounded-t-md border-b bg-secondary p-3", className)}
     {...props}
   />
 );
@@ -51,9 +50,12 @@ export const NodeDescription = (props: NodeDescriptionProps) => (
   <CardDescription {...props} />
 );
 
-export type NodeActionProps = ComponentProps<typeof CardAction>;
+// ✅ Remplacement de CardAction par un div stylisé
+export type NodeActionProps = React.HTMLAttributes<HTMLDivElement>;
 
-export const NodeAction = (props: NodeActionProps) => <CardAction {...props} />;
+export const NodeAction = ({ className, ...props }: NodeActionProps) => (
+  <div className={cn("flex items-center gap-2", className)} {...props} />
+);
 
 export type NodeContentProps = ComponentProps<typeof CardContent>;
 
@@ -65,7 +67,7 @@ export type NodeFooterProps = ComponentProps<typeof CardFooter>;
 
 export const NodeFooter = ({ className, ...props }: NodeFooterProps) => (
   <CardFooter
-    className={cn("rounded-b-md border-t bg-secondary p-3!", className)}
+    className={cn("rounded-b-md border-t bg-secondary p-3", className)}
     {...props}
   />
 );
