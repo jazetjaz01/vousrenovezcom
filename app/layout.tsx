@@ -3,14 +3,15 @@ import { Outfit } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
 import Navbar from "@/components/navbar-01/navbar-01";
+
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
   : "http://localhost:3000";
 
 export const metadata: Metadata = {
   metadataBase: new URL(defaultUrl),
-  title: "Next.js and Supabase Starter Kit",
-  description: "The fastest way to build apps with Next.js and Supabase",
+  title: "Vousrenovez.com - Le moyen le plus fiable d'engager un artisan dans votre région",
+  description: "Vous avez des travaux à réaliser chez vous ? Confiez-les à des artisans qualifiés. Publiez gratuitement votre projet sur Renovez.com et trouvez l artisan qu il vous faut pour vos travaux.",
 };
 
 const outfitSans = Outfit({
@@ -25,7 +26,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="fr" suppressHydrationWarning>
       <body className={`${outfitSans.className} antialiased`}>
         <ThemeProvider
           attribute="class"
@@ -33,8 +34,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Navbar />
+           <Navbar />
           {children}
+        
         </ThemeProvider>
       </body>
     </html>
