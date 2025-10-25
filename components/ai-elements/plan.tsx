@@ -1,9 +1,8 @@
-"use client";
+'use client';
 
 import { Button } from "@/components/ui/button";
 import {
   Card,
-  CardAction,
   CardContent,
   CardDescription,
   CardFooter,
@@ -104,10 +103,11 @@ export const PlanDescription = ({
   );
 };
 
-export type PlanActionProps = ComponentProps<typeof CardAction>;
+// ✅ Remplacement de CardAction par un div stylisé
+export type PlanActionProps = React.HTMLAttributes<HTMLDivElement>;
 
-export const PlanAction = (props: PlanActionProps) => (
-  <CardAction data-slot="plan-action" {...props} />
+export const PlanAction = ({ className, ...props }: PlanActionProps) => (
+  <div data-slot="plan-action" className={cn("flex items-center gap-2", className)} {...props} />
 );
 
 export type PlanContentProps = ComponentProps<typeof CardContent>;
