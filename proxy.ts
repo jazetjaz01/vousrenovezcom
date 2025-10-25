@@ -3,18 +3,13 @@ import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 import { hasEnvVars } from "./lib/utils";
 
-// Liste des routes accessibles sans authentification
 const PUBLIC_ROUTES = ["/", "/actualite", "/contact", "/auth", "/login"];
-
-// Liste des routes nécessitant une authentification
 const PROTECTED_ROUTES = ["/chatbox", "/dashboard", "/profil"];
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   let response = NextResponse.next({ request });
 
-  if (!hasEnvVars) {
-    return response;
-  }
+  if (!hasEnvVars) return response;
 
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -45,7 +40,6 @@ export async function middleware(request: NextRequest) {
   const isPublic = PUBLIC_ROUTES.some((path) => pathname.startsWith(path));
   const isProtected = PROTECTED_ROUTES.some((path) => pathname.startsWith(path));
 
-  // Redirige uniquement si l'utilisateur n'est pas connecté et qu'on est sur une route protégée
   if (isProtected && !user) {
     const url = request.nextUrl.clone();
     url.pathname = "/auth/login";
