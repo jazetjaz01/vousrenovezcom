@@ -51,6 +51,20 @@ export default {
           "4": "hsl(var(--chart-4))",
           "5": "hsl(var(--chart-5))",
         },
+         teal: {
+          DEFAULT: "#14b8a6", // couleur principale teal
+          50: "#e0f7f5",
+          100: "#b2f0eb",
+          200: "#80e8e0",
+          300: "#4fdfd5",
+          400: "#26d7cc",
+          500: "#14b8a6",
+          600: "#0f8f87",
+          700: "#0a6460",
+          800: "#053b39",
+          900: "#011514",
+        },
+        
       },
       borderRadius: {
         lg: "var(--radius)",
